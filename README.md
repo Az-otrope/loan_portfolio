@@ -20,7 +20,7 @@ LendingClub enables borrowers to create unsecured personal loans between $1,000 
 Default Prediction Process at a Banking or Lending Institution.
 
 ## Project Workflow <a name="Workflow"></a>
-![BFD](img/BFD.png)<br>
+![BFD](src/img/BFD.png)<br>
 Figure 1. Workflow to build a classification model and build the LendingClub loan portfolio.
 
 ## Exploratory Data Analysis (EDA) <a name="EDA"></a>
