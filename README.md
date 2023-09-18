@@ -15,7 +15,7 @@ lending-club-loan-portfolio
 
 LendingClub enables borrowers to create unsecured personal loans between $1,000 and $40,000. Investors can search and browse the loan listings on the LendingClub website and select loans that they want to invest in based on the information supplied about the borrower, amount of loan, loan grade, and loan purpose, with a minimum investment of $25 per note. Investors make money from interest. LendingClub makes money by charging borrowers an origination fee and investors a service fee.
 
-![overview](img/default_loan.png)<br>
+![overview](src/img/default_loan.png)<br>
 
 ## Project Workflow <a name="Workflow"></a>
 ![BFD](src/img/BFD.png)<br>
