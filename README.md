@@ -29,10 +29,10 @@ I'm exploring the distribution of all the loans regarding the borrowers' feature
 Figure 1. Amount of loans issued over the years and the interest rate trends across 6 states from 2007 - 2011
 
 **Findings**
-- the amount of issued loans seems to have grown exponentially over the range of 2007 - 2011.
-    - loans in 2008 were 8x more than in 2007
-    - amount of loans increases 2x/year from 2009 to 2011
-- the 60-month loan term was introduced in 2010
+- The amount of issued loans seems to have grown exponentially over the range of 2007 - 2011.
+    - Loans in 2008 were 8x more than in 2007
+    - Amount of loans increases 2x/year from 2009 to 2011
+- The 60-month loan term was introduced in 2010
 - The interest rate follows the same trend across the 6 states:
     - The interest rate increased from 2007 and reached its peak in 2009
     - Declined in 2010, and slightly increased in 2011
@@ -50,9 +50,9 @@ Figure 2. Loan distribution over some features (loan term, loan grade, states, l
     - Fully paid: 85.1%
     - Charged off: 14.9%
 - Loans significantly come from:
-    - state: CA, NY
-    - for debt_consolidation purpose
-    - from renters and mortgage pay
+    - State: CA, NY
+    - For debt_consolidation purpose
+    - From renters and mortgage pay
 - There are 7 grades loan A - G = high - low
     - The top 3 loan grades are A, B, and C (total 75.48%) with grade B having the highest amount (24.49%)
 
@@ -61,8 +61,8 @@ Term:
 - The number of 36-month loans is about ~ 3x more than 60-month loans in the dataset.
   
 State:
-- most loans are generated from CA (35.69% or ~6k), which is nearly double from NY
-- loan from CA and NY made up half of the total loan from all 6 states
+- Most loans are generated from CA (35.69% or ~6k), which is nearly double from NY
+- Loans from CA and NY made up half of the total loans from all 6 states
 
 ### Loan Status
 ![payoff](src/img/payoff_rate.png)<br>
@@ -76,7 +76,7 @@ Term:
 
 Grade:
 - Recall: interest rate increase across A - G
-- payoffRate decreases across loan grades A - G
+- Payoff rate decreases across loan grades A - G
 - Higher grades (A-C) have lower interest rates and higher payoff rate
 
   
@@ -98,8 +98,8 @@ The dataset is highly imbalanced, with 85% class 1 (fully paid) and 15% class 0 
 I compared the performance of 2 classification models: logistic regression and random forest in their default and balanced class_weight states. I ran the 10-fold cross-validation on the train test and then compared the models' performance scores on the test set. 
 
 The accuracy score of the zero model is 85%. Although all models exhibit high scores in precision and recall, the **Logistic Regression classifier with balanced class_weight** scored highest at the two important metrics of precision and recall:
-- class 1 precision 0.98
-- class 0 recall at 0.87
+- The precision rate of class 1 is 0.98: among all the loans identified as to be fully paid by the classification model, 98% of them are actually fully paid. This is much better than the repaid rate of the whole test set, which is about 85%.
+- The recall rate of class 0 is 0.87: for all loans that are charged off, the model identifies 87% of them as charged off.
 
 ![scores](src/img/models_scores.png)<br>
 Figure 5. Compare the performance of the 2 classification models on the test set.
@@ -108,21 +108,33 @@ Figure 5. Compare the performance of the 2 classification models on the test set
 Figure 6. ROC and AUC of the 2 classification models in default and balanced class_weight settings
 
 ## Feature Importance <a name="SHAP"></a>
-Features that contribute most in determining the likelihood of a loan being paid off are total_payment, funded_amount, annual_income, revolving utilization rate, dti, loan purpose, and interest rate.
-**Next step** re-train the model without useless features. 
+The most important features that contribute most to determining the likelihood of a loan being paid off are:
+- total payment: Payments received to date for the total amount funded
+- funded amount: The total amount committed to that loan at that point in time
+- dti: A ratio calculated using the borrower’s total monthly debt payments on the total debt obligations
+- annual_inc: Borrower's annual income
+- revol_util: Revolving line utilization rate
 
-![SHAP](src/img/SHAP_values.png)<br>
-Figure 7. SHAP analysis on the features influencing the payoff ability. 
+Loans that are more likely to be fully payoff when borrowers have:
+- a high amount of total payment up-to-date
+- small asked loan amount
+- high annual income
+  
+![SHAP](src/img/beeswarm_plot.png)<br>
+Figure 7. Summary of all the features' effects influencing the payoff ability. 
+
+![PDP](src/img/pdp_2feats.png)<br>
+Figure 8. Partial dependence plot showing the effects of the top 2 features on the loan payoff likelihood.
 
 ## Loan Portfolio <a name="Portfolio"></a>
 The loan portfolio was conducted by applying some filters:
-- loans with label "1": loans that are predicted to be fully paid
+- class 1 loans: loans that are predicted to be fully paid
 - loans without a public bankruptcy record
 
-By applying the filter of choosing loans with no record of bankruptcy, the annual return for LendingClub increased by roughly 0.1% for both loan terms. By selecting the right feature, the Logistic model predicts loans with high likelihood to be fully paid and double the annual return rate for LendingClub. 
+By applying the filter of choosing loans with no record of bankruptcy, the annual return for LendingClub increased by roughly 0.1% for both loan terms. By selecting the right feature, the Logistic model predicts loans with a high likelihood of being fully paid and double the annual return rate for LendingClub. 
 
 | Model  | 3-year | 5-year |
 | -------- | --- | --- |
 | Current  | 2.69% | 2.74% |
 | No bankruptcy record | 2.90% | 2.90%|
-| Predicted "1" and no bankruptcy record | 5.09% | 5.91%|
+| Class 1 and no bankruptcy record | 5.09% | 5.91%|
