@@ -16,11 +16,11 @@ lending-club-loan-portfolio
 
 LendingClub enables borrowers to create unsecured personal loans between $1,000 and $40,000. Investors can search and browse the loan listings on the LendingClub website and select loans that they want to invest in based on the information supplied about the borrower, amount of loan, loan grade, and loan purpose, with a minimum investment of $25 per note. Investors make money from interest. LendingClub makes money by charging borrowers an origination fee and investors a service fee.
 
-![overview](src/img/default_loan.jpg)<br>
+![overview](img/default_loan.jpg)<br>
 Default Prediction Process at a Banking or Lending Institution.
 
 ## Project Workflow <a name="Workflow"></a>
-![BFD](src/img/BFD.png)<br>
+![BFD](img/BFD.png)<br>
 Figure 1. Workflow to build a classification model and build the LendingClub loan portfolio.
 
 ## Exploratory Data Analysis (EDA) <a name="EDA"></a>
