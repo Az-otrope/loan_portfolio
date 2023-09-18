@@ -123,5 +123,5 @@ By applying the filter of choosing loans with no record of bankruptcy, the annua
 | Model  | 3-year | 5-year |
 | -------- | --- | --- |
 | Current  | 2.69% | 2.74% |
-| No bankruptcy record | 2.76% | 2.81%|
-| Predicted to be paid-off | 5.09% | 5.91%|
+| No bankruptcy record | 2.90% | 2.90%|
+| Predicted "1" and no bankruptcy record | 5.09% | 5.91%|
