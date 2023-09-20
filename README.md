@@ -3,6 +3,7 @@ lending-club-loan-portfolio
 
 - [Project Goal](#Project-Motivation)
 - [Project Workflow](#Workflow)
+- [Data Query](#Query)
 - [Exploratory Data Analysis (EDA)](#EDA)
 - [Model Building](#Model)
 - [Feature Importance](#SHAP)
@@ -21,12 +22,18 @@ LendingClub enables borrowers to create unsecured personal loans between $1,000 
 ![BFD](src/img/BFD.png)<br>
 Figure 1. Workflow to build a classification model and build the LendingClub loan portfolio.
 
+## Data Query <a name="Query"></a>
+SQL is used to query data tables ready for EDA.
+
+![sql](src/img/sql_queries.png)<br>
+Figure 2. SQL queries create tables ready for visualization.
+
 ## Exploratory Data Analysis (EDA) <a name="EDA"></a>
 I'm exploring the distribution of all the loans regarding the borrowers' features, and how interest rate over the year across 6 states influences the loan status. 
 
 ### Interest rate and Loan issued over the year
 ![year_trend](src/img/loan_int_year.png)<br>
-Figure 2. Amount of loans issued over the years and the interest rate trends across 6 states from 2007 - 2011
+Figure 3. Amount of loans issued over the years and the interest rate trends across 6 states from 2007 - 2011
 
 **Findings**
 - The amount of issued loans seems to have grown exponentially over the range of 2007 - 2011.
@@ -43,7 +50,7 @@ Figure 2. Amount of loans issued over the years and the interest rate trends acr
       
 ### Loan Distribution
 ![loan_amount](src/img/loan_dist.png)<br>
-Figure 3. Loan distribution over some features (loan term, loan grade, states, loan purposes, home ownership status, loan status)
+Figure 4. Loan distribution over some features (loan term, loan grade, states, loan purposes, home ownership status, loan status)
 
 **Findings**
 - The current default rate is 14.9%:
@@ -66,7 +73,7 @@ State:
   
 ### Interest Rate Distribution
 ![int_rate](src/img/int_dist.png)<br>
-Figure 4. Interest rate distribution regarding categorical features
+Figure 5. Interest rate distribution regarding categorical features
 
 **Findings**
 - The 36-month term has a lower average interest rate than the 60-month term.
@@ -78,7 +85,7 @@ Figure 4. Interest rate distribution regarding categorical features
 
 ### Loan Status
 ![payoff](src/img/payoff_rate.png)<br>
-Figure 5. Payoff rate and default rate for each loan term (3-year, 5-year) and loan grades (A-G)
+Figure 6. Payoff rate and default rate for each loan term (3-year, 5-year) and loan grades (A-G)
 
 **Findings**
 
@@ -101,10 +108,10 @@ The accuracy score of the zero model is 85%. Although all models exhibit high sc
 - The recall rate of class 0 is 0.87: for all loans that are charged off, the model identifies 87% of them as charged off.
 
 ![scores](src/img/models_scores.png)<br>
-Figure 6. Compare the performance of the 2 classification models on the test set.
+Figure 7. Compare the performance of the 2 classification models on the test set.
 
 ![roc](src/img/roc.png)<br>
-Figure 7. ROC and AUC of the 2 classification models in default and balanced class_weight settings
+Figure 8. ROC and AUC of the 2 classification models in default and balanced class_weight settings
 
 ## Feature Importance <a name="SHAP"></a>
 The most important features that contribute most to determining the likelihood of a loan being paid off are:
@@ -115,7 +122,7 @@ The most important features that contribute most to determining the likelihood o
 - revol_util: Revolving line utilization rate
   
 ![SHAP](src/img/beeswarm_plot.png)<br>
-Figure 8. Summary of all the features' effects influencing the payoff ability. 
+Figure 9. Summary of all the features' effects influencing the payoff ability. 
 
 Loans that are more likely to be fully payoff when borrowers have:
 - a high amount of total payment up-to-date
@@ -123,7 +130,7 @@ Loans that are more likely to be fully payoff when borrowers have:
 - high annual income
   
 ![PDP](src/img/pdp_2feats.png)<br>
-Figure 9. Partial dependence plot showing the effects of the top 2 features on the loan payoff likelihood.
+Figure 10. Partial dependence plot showing the effects of the top 2 features on the loan payoff likelihood.
 
 ## Loan Portfolio <a name="Portfolio"></a>
 The loan portfolio was conducted by applying some filters:
